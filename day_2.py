@@ -34,6 +34,7 @@ check_red = 12
 check_blue = 14
 check_green = 13
 game_sum = 0
+power_sum = 0
 
 for game in data:
     pull_number = 0
@@ -41,6 +42,7 @@ for game in data:
     max_red = 0
     max_blue = 0
     max_green = 0
+    game_power = 0
     #print(f"Game #: {game_number}")
     colon_position = game.find(":")
     game = game[(colon_position + 2):]
@@ -69,6 +71,11 @@ for game in data:
 
     if max_red <= check_red and max_blue <= check_blue and max_green <= check_green:
         game_sum += game_number
+
+    #Part 2
+    game_power = max_red * max_blue * max_green
+    power_sum += game_power
             
     print(f"Max Red: {max_red}, Max Blue: {max_blue}, Max Green: {max_green}")
     print(game_sum)
+    print(power_sum)
