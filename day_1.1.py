@@ -23,6 +23,9 @@ def read_csv_file(file_path):
         print(f"An error occurred: {e}")
         return None
 
+csv_file_path = 'day_1.1_input.csv'
+data = read_csv_file(csv_file_path)
+
 calibration_sum = 0
 line_count = 0
 
