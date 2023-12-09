@@ -1,6 +1,7 @@
 import csv
 import time
 import sys
+import math
 
 startTime = time.perf_counter()
 
@@ -37,6 +38,8 @@ for line in data:
 
 node_dict = dict(zip(nodes, pairs))    
 
+#Part 1
+
 current_node = "AAA"
 found_ZZZ = False
 
@@ -56,5 +59,32 @@ while found_ZZZ == False:
 
 print(f"Number of steps required to find ZZZ: {steps}")
 
-print(f"Time elapsed: {(time.perf_counter() - startTime)}s", file=sys.stderr)
+#Part 2
 
+steps_list = []
+steps = 0
+
+for node in node_dict:
+    steps = 0
+    found_Z = False
+    if node[2] != "A":
+        continue
+    else:
+        current_node = node
+        while found_Z == False:
+
+            for char in instructions:
+                steps += 1
+                if char == "L":
+                    current_node = node_dict[current_node][0]
+                else:
+                    current_node = node_dict[current_node][1]
+                if current_node[2] == "Z":
+                    steps_list.append(int(steps))
+                    found_Z = True
+                    break
+                
+steps = math.lcm(*steps_list)
+print(f"Number of steps required to find Z: {steps}")
+
+print(f"Time elapsed: {(time.perf_counter() - startTime)}s", file=sys.stderr)
