@@ -30,6 +30,7 @@ data = read_csv_file(csv_file_path)
 #Part 1
 
 total_value = 0
+total_value2 = 0
 
 for line in data:
     current_line = line
@@ -65,9 +66,21 @@ for line in data:
 
     total_value += next_value
 
+    #Part 2
+
+    previous_value = int(line[0])
+    temp_value = 0
+    for i in range(row_count - 1, -1, -1):
+        #print(f"row_count - 1: {row_count - 1 - i}; triangle_list: {triangle_list[i][len(triangle_list[i])-1]}")
+        temp_value = int(triangle_list[i][len(triangle_list[i])-1]) - temp_value
+    previous_value = previous_value - temp_value
+    #print(previous_value)
+    
+    total_value2 += previous_value
 
 
 print(total_value)
+print(total_value2)
 
 
 print(f"Time elapsed: {(time.perf_counter() - startTime)}s", file=sys.stderr)
